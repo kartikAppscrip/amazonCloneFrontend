@@ -1,0 +1,80 @@
+.header {
+  height: 60px;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  background-color: #131921;
+  color: rgb(255, 255, 255);
+  position: sticky;
+}
+
+.amazonLogo {
+  /* object-fit: contain; */
+  width: 100px;
+  height: 55px;
+}
+
+.header_nav {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.header_search {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  border-radius: 4px;
+  height: 40px !important;
+}
+
+.searchIcon {
+  width: 40px !important;
+  background-color: #febd69;
+  color: #0f1111;
+}
+
+.nav_options {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.option_lineOne {
+  color: #ccc;
+  font-size: 12px;
+  line-height: 14px;
+  height: 14px;
+  font-weight: 400;
+  margin-right: auto;
+}
+
+.option_lineTwo {
+  color: #fff;
+  font-size: 14px;
+  line-height: 15px;
+  font-weight: 700;
+}
+
+.BodyMain{
+  display: flex;
+  /* justify-content: space-between; */
+  background-color: #232f3e;
+}
+.BodyMain a{
+  text-decoration: none;
+}
+
+.routeTagsBodyMain:hover{
+  border: 1px solid #fff;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #fff;
+}
+.routeTagsBodyMain{
+  margin: 5px 0 6px 0;
+  padding: 5px 9px;
+  text-decoration: none;
+  color: #fff;
+}
