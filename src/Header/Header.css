@@ -17,7 +17,7 @@
 .header_nav {
   display: flex;
   justify-content: space-evenly;
-  padding: 10px;
+  padding: 10px 0;
 }
 
 .header_search {
@@ -32,6 +32,10 @@
   width: 40px !important;
   background-color: #febd69;
   color: #0f1111;
+}
+.searchIcon:hover{
+  background-color: #fbae49;
+  cursor: pointer;
 }
 
 .nav_options {

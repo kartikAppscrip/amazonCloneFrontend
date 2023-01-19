@@ -16,8 +16,8 @@ const data = [
 ]
 const AllDropDown = () => {
   return <div>
-    <div className="dropdown">
-      <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div className="dropdown" style={{height: '40px'}}>
+      <button className="btn btn-secondary dropdown-toggle border-0 rounded-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{height: '40px'}}>
         All
       </button>
       <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">

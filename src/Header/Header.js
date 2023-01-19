@@ -26,14 +26,12 @@ const headerAcountOrderPrime = [
 
 function Header() {
   const [indexHeaderAcount, setIndexHeaderAcount] = React.useState(0);
-  console.log(indexHeaderAcount);
   switch (indexHeaderAcount) {
     case 1:
       <Link to='/SignIn' />
       break;
     default:
       <Link to='#' />
-
   }
   return (
     <>
@@ -50,14 +48,14 @@ function Header() {
           <span className="option_lineTwo">Select your address</span>
         </div>
         <div className="header_search">
-          <div className="AllDropDown">
+          <div className="AllDropDown" style={{height: '40px'}}>
             <AllDropDown />
           </div>
           <div className="search h-100 w-100">
-            <input type="text" placeholder="Search" className="w-100 h-100" />
+            <input type="text" placeholder="Search" className="w-100 h-100 border-0" />
           </div>
           <div className="searchIcon h-100" >
-            <SearchIcon />
+            <SearchIcon className="d-flex m-auto h-100" />
           </div>
         </div>
         <div className="header_nav">
@@ -83,6 +81,26 @@ function Header() {
         </div>
       </div>
       <BodyHeader />
+      <style jsx>
+        {
+          `
+          input{
+            outline: none;
+            padding: 10px;
+          }
+          @media (max-width: 768px) {
+            .AllDropDown{
+              display: none;
+            }
+          }
+          @media (max-width: 640px) {
+            .header_search{
+              display: none;
+            }
+          }
+          `
+        }
+      </style>
     </>
   );
 }

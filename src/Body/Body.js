@@ -1,54 +1,48 @@
 import React, { useState } from 'react';
+import Banner from './Banner';
+import Product from './Product';
 
-// const helper = () => {
-//   return (
-//     <div>
-//       {/* {setDialog(true)} */}
-//     </div>
-//   )
-// }
 function Body() {
-  const [dialog, setDialog] = useState(false);
+  async function dataGetFunction() {
+    try {
+      const response = await fetch('https://fakestoreapi.com/products/');
+      const data = await response.json();
+      setJsonData(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const [jsonData, setJsonData] = useState([]);
+  React.useEffect(() => {
+    dataGetFunction();
+  }, []);
+
   return (
-    <div style={{ border: '1px solid black', height: '100%' }}>
-      <div className='d-flex' onClick={(event) => {
-        setDialog(true); console.log(event.pageX, 'kartik', event.pageY)
-      }
-      }>open popup</div>
-      {
-        dialog ? <div>
-        </div> : ''
-      }
+    <div>
+      <div className='' style={{ backgroundColor: '#eaeded' }}>
+        <Banner className="banner" />
+        {/* <img className="home_image" alt="image" src="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/717sXUCB29L._SX3000_.jpg" /> */}
+        <div className='d-flex justify-content-around flex-wrap row m-0'>
+          {jsonData?.map((data, index) =>
+            <div className="col helper m-4 p-0" key={index}>
+              <Product data={data} />
+            </div>)}
+        </div>
+      </div>
+      <style jsx>
+        {
+          `
+          .helper{
+            height: 430px;
+            max-width: 400px;
+            min-width: 300px;
+          }
+          `
+        }
+      </style>
     </div>
   );
 }
-
-
-// const data = ['first',
-//   'second',
-//   'third',
-// ]
-// const helper = () => {
-//   return (data.map((value, index) =>
-//     <p key={index}
-//       // onClick={() => hellper2()}
-//     >{value}</p>))
-// }
-// const hellper2 = () => {
-//   return (
-//     <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-//     Popover on right
-//   </button>)
-// }
-// function Body() {
-//   return (
-//     <div className="mt-4">
-//       {/* {helper()} */}
-//       <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-//     Popover on right
-//   </button>
-//     </div>
-//   );
-// }
 
 export default Body;
