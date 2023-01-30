@@ -5,6 +5,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import BodyHeader from "../Body/BodyHeader";
 import AllDropDown from "./AllDropDown";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const headerAcountOrderPrime = [
   {
@@ -24,7 +25,7 @@ const headerAcountOrderPrime = [
   }
 ]
 
-function Header() {
+function Header(props) {
   const [indexHeaderAcount, setIndexHeaderAcount] = React.useState(0);
   switch (indexHeaderAcount) {
     case 1:
@@ -74,7 +75,7 @@ function Header() {
           <ShoppingCartIcon style={{ marginTop: "auto" }} />
           <div className="nav_options">
             <span className="option_lineOne" style={{ color: "orange" }}>
-              {0}
+              {props.dataAdded.itemsInBasket}
             </span>
             <span className="option_lineTwo">cart</span>
           </div>
@@ -105,4 +106,9 @@ function Header() {
   );
 }
 
-export default Header;
+function mapStateToProps(state) {
+  return {
+    dataAdded: state.dataAddedReducer
+  };
+}
+export default connect(mapStateToProps)(Header);
