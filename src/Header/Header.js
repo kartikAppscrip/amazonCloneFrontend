@@ -11,17 +11,17 @@ const headerAcountOrderPrime = [
   {
     topText: "Hello Guest,sign in",
     bottomText: "Account & Lists",
-    link: "SignIn"
+    // route: "SignIn"
   },
   {
     topText: "Returns",
     bottomText: "& Orders",
-    link: "SignIn"
+    // route: "return&orders"
   },
   {
     topText: "Your",
     bottomText: "Prime",
-    route: "SignIn"
+    // route: "prime"
   }
 ]
 
@@ -37,19 +37,19 @@ function Header(props) {
   return (
     <>
       <div className="header">
-        <div>
+        <Link to='/' >
           <img
             src="https://i0.wp.com/www.dafontfree.co/wp-content/uploads/2021/11/Amazon-Logo-Font-1-scaled.jpg?resize=2560%2C1578"
             alt="error"
             className="amazonLogo"
           />
-        </div>
+        </Link>
         <div className="nav_options">
           <span className="option_lineOne">Hello</span>
           <span className="option_lineTwo">Select your address</span>
         </div>
         <div className="header_search">
-          <div className="AllDropDown" style={{height: '40px'}}>
+          <div className="AllDropDown" style={{ height: '40px' }}>
             <AllDropDown />
           </div>
           <div className="search h-100 w-100">
@@ -71,7 +71,7 @@ function Header(props) {
             ))
           }
         </div>
-        <div style={{ display: "flex", flexDirection: "row" }}>
+        <Link to='cart' style={{ display: "flex", flexDirection: "row", color: 'white' }}>
           <ShoppingCartIcon style={{ marginTop: "auto" }} />
           <div className="nav_options">
             <span className="option_lineOne" style={{ color: "orange" }}>
@@ -79,7 +79,7 @@ function Header(props) {
             </span>
             <span className="option_lineTwo">cart</span>
           </div>
-        </div>
+        </Link>
       </div>
       <BodyHeader />
       <style jsx>

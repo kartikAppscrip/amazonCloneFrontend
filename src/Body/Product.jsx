@@ -11,9 +11,9 @@ import { addToBasket } from "../actions/Body";
 
 function Product(props) {
     const dispatch = useDispatch();
-    const { data } = props;
+    const { data, noAddButton } = props;
     return <div className="product d-flex flex-column justify-content-between">
-        <p className="font-italic font-weight-light ml-auto pr-2 pt-1 mb-1" style={{fontSize: '12px'}}>
+        <p className="font-italic font-weight-light ml-auto pr-2 pt-1 mb-1" style={{ fontSize: '12px' }}>
             {data.category}
         </p>
         <div>
@@ -31,12 +31,12 @@ function Product(props) {
                 <span class="a-size-small a-color-tertiary d-flex align-items-center">{data.rating.count}</span>
             </p>
         </div>
-        <p className="p-2 h-auto line-clamp h-100" style={{fontSize: '13px'}}>
+        <p className="p-2 h-auto line-clamp h-100" style={{ fontSize: '13px' }}>
             {data?.description}
         </p>
         <button
             className="ml-4 mr-4 mb-3 mt-2 p-2 rounded border-0 buttonAddToCart"
-            onClick={ () => addToBasket(data, dispatch) }
+            onClick={() => addToBasket(data, dispatch)}
         >
             Add To Basket
         </button>
