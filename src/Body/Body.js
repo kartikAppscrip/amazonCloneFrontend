@@ -20,7 +20,7 @@ function Body() {
 
   return (
     <div>
-      <div className='' style={{ backgroundColor: '#eaeded' }}>
+      <div className='bgAmazon'>
         <Banner className="banner" />
         {/* <img className="home_image" alt="image" src="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/717sXUCB29L._SX3000_.jpg" /> */}
         <div className='d-flex justify-content-around flex-wrap row m-0'>
