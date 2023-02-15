@@ -36,7 +36,7 @@ function Header(props) {
   }
   return (
     <>
-      <div className="header">
+      <div className="header position-fixed w-100" style={{zIndex: 10}}>
         <Link to='/' >
           <img
             src="https://i0.wp.com/www.dafontfree.co/wp-content/uploads/2021/11/Amazon-Logo-Font-1-scaled.jpg?resize=2560%2C1578"
@@ -81,7 +81,9 @@ function Header(props) {
           </div>
         </Link>
       </div>
-      <BodyHeader />
+      <div className="position-relative" style={{top: '60px', zIndex: 1}}>
+        <BodyHeader />
+      </div>
       <style jsx>
         {
           `
