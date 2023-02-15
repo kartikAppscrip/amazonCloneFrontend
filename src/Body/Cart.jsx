@@ -6,7 +6,7 @@ function Cart() {
   const dataInCart = useSelector(state => state.dataAddedReducer.dataAdded);
   const totalAmount = dataInCart?.map(item => item.price).reduce((partialSum, a) => partialSum + a, 0);
 
-  return <div className="bgAmazon p-4" style={{ height: '100vh' }}>
+  return <div className="bgAmazon p-4 position-relative" style={{ height: '100vh', top: '60px' }} >
     <div className="bg-white p-4">
       <div className="d-flex justify-content-between">
         <h2>Shopping Cart</h2>
