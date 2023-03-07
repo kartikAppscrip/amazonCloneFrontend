@@ -20,13 +20,13 @@ function Body() {
 
   return (
     <div>
-      <div className='bgAmazon position-relative' style={{top: '60px'}}>
+      <div className='bgAmazon position-relative' style={{ top: '60px' }}>
         <Banner className="banner" />
         {/* <img className="home_image" alt="image" src="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/717sXUCB29L._SX3000_.jpg" /> */}
         <div className='d-flex justify-content-around flex-wrap row m-0'>
           {jsonData?.map((data, index) =>
             <div className="col helper m-4 p-0" key={index}>
-              <Product data={data} />
+              <Product data={data} jsonData={jsonData} />
             </div>)}
         </div>
       </div>

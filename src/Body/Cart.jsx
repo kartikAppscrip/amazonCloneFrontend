@@ -4,9 +4,11 @@ import CartProduct from "./CartProduct";
 
 function Cart() {
   const dataInCart = useSelector(state => state.dataAddedReducer.dataAdded);
-  const totalAmount = dataInCart?.map(item => item.price).reduce((partialSum, a) => partialSum + a, 0);
-
-  return <div className="bgAmazon p-4 position-relative" style={{ height: '100vh', top: '60px' }} >
+  let totalAmount = 0;
+  dataInCart?.map((item) => {
+    totalAmount += (item.qty) * (item.price);
+  });
+  return <div className="bgAmazon p-4 position-relative cartBelowHeader">
     <div className="bg-white p-4">
       <div className="d-flex justify-content-between">
         <h2>Shopping Cart</h2>
@@ -27,6 +29,16 @@ function Cart() {
         <strong>{`$${Math.round(totalAmount * 100) / 100}`}</strong>
       </h4>
     </div>
+    <style jsx>
+      {
+        `
+        .cartBelowHeader{
+          height: ${dataInCart.length < 3 ? "calc(100vh - 105px)" : 'auto'};
+          top: 60px;
+        }
+        `
+      }
+    </style>
   </div>
 }
 
