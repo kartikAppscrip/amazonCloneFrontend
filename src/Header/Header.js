@@ -1,3 +1,4 @@
+// import React, { useEffect } from "react";
 import React from "react";
 import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
@@ -5,7 +6,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import BodyHeader from "../Body/BodyHeader";
 import AllDropDown from "./AllDropDown";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 const headerAcountOrderPrime = [
   {
@@ -25,8 +26,9 @@ const headerAcountOrderPrime = [
   }
 ]
 
-function Header(props) {
+function Header() {
   const [indexHeaderAcount, setIndexHeaderAcount] = React.useState(0);
+  const itemsInBasket = useSelector(state => state.dataAddedReducer.itemsInBasket);
   switch (indexHeaderAcount) {
     case 1:
       <Link to='/SignIn' />
@@ -36,7 +38,7 @@ function Header(props) {
   }
   return (
     <>
-      <div className="header position-fixed w-100" style={{zIndex: 10}}>
+      <div className="header position-fixed w-100" style={{ zIndex: 10 }}>
         <Link to='/' >
           <img
             src="https://i0.wp.com/www.dafontfree.co/wp-content/uploads/2021/11/Amazon-Logo-Font-1-scaled.jpg?resize=2560%2C1578"
@@ -75,13 +77,13 @@ function Header(props) {
           <ShoppingCartIcon style={{ marginTop: "auto" }} />
           <div className="nav_options">
             <span className="option_lineOne" style={{ color: "orange" }}>
-              {props.dataAdded.itemsInBasket}
+              {itemsInBasket || 0}
             </span>
             <span className="option_lineTwo">cart</span>
           </div>
         </Link>
       </div>
-      <div className="position-relative" style={{top: '60px', zIndex: 1}}>
+      <div className="position-relative" style={{ top: '60px', zIndex: 1 }}>
         <BodyHeader />
       </div>
       <style jsx>
@@ -108,9 +110,9 @@ function Header(props) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    dataAdded: state.dataAddedReducer
-  };
-}
-export default connect(mapStateToProps)(Header);
+// function mapStateToProps(state) {
+//   return {
+//     dataAdded: state.dataAddedReducer
+//   };
+// }
+export default Header;

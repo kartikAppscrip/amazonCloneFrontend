@@ -1,17 +1,22 @@
 import React from "react";
 import StarRateIcon from '@mui/icons-material/StarRate';
 import Currency from "react-currency-formatter";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToBasket } from "../actions/Body";
 
 // const restrictLengthOfDesc = (oldDesc) => {
 //     const newDesc = oldDesc.substring(0, 150);
 //     return newDesc === oldDesc ? oldDesc : `${newDesc}...`;
 // }
+const addClicked = (reduxData, data, dispatch) => {
+    const check = reduxData?.filter(dataRedux => dataRedux.id === data.id);
+    addToBasket(data, dispatch, check);
+}
 
 function Product(props) {
+    const reduxData = useSelector(state => state.dataAddedReducer.dataAdded);
     const dispatch = useDispatch();
-    const { data, noAddButton } = props;
+    const { data } = props;
     return <div className="product d-flex flex-column justify-content-between">
         <p className="font-italic font-weight-light ml-auto pr-2 pt-1 mb-1" style={{ fontSize: '12px' }}>
             {data.category}
@@ -36,7 +41,7 @@ function Product(props) {
         </p>
         <button
             className="ml-4 mr-4 mb-3 mt-2 p-2 rounded border-0 buttonAddToCart"
-            onClick={() => addToBasket(data, dispatch)}
+            onClick={() => addClicked(reduxData, data, dispatch)}
         >
             Add To Basket
         </button>
