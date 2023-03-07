@@ -15,21 +15,17 @@ const dataAddedReducer = (state = initialState, action) => {
         dataAdded: [...state.dataAdded, { ...action.data, qty: 1 }]
       }
     case INCREASED_ITEM:
-      const addedIndex = state.dataAdded?.findIndex(obj => obj.id === action.data.id);
-      state.dataAdded.map((obj, index) => {
-        if (index === addedIndex) {
-          obj.qty = obj.qty + 1;
-        }
-      });
-      return state;
+      const updateIState = { ...state };
+      const addedIndex = updateIState.dataAdded?.findIndex(obj => obj.id === action.data.id);
+      const newIData = updateIState.dataAdded.map((obj, index) => ({ ...obj, qty: index === addedIndex ? obj.qty + 1 : obj.qty })
+      );
+      return { ...updateIState, dataAdded: newIData };
     case QTY_SELECT:
-      const qtySelectId = state.dataAdded?.findIndex(obj => obj.id === action.data.id);
-      state.dataAdded.map((obj, index) => {
-        if (index === qtySelectId) {
-          obj.qty = action.qty;
-        }
-      });
-      return state;
+      const updateState = { ...state };
+      const qtySelectId = updateState.dataAdded?.findIndex(obj => obj.id === action.data.id);
+      const newdata = updateState.dataAdded.map((obj, index) => ({ ...obj, qty: index === qtySelectId ? action.qty : obj.qty })
+      );
+      return { ...updateState, dataAdded: newdata };
     default:
       return state;
   }
