@@ -39,7 +39,7 @@ function CartProduct(props) {
                     {[...Array(Math.round(data.rating.rate))].map((_, i) => <StarRateIcon fontSize="small" />)}
                     <span class="a-size-small a-color-tertiary d-flex align-items-center">{data.rating.count}</span>
                 </p>
-                <div className="d-flex align-items-center">
+                <div className="d-flex align-items-center qtySelectDiv">
                     <label className="m-0 p-0 qtyLabel">Qty: </label>
                     <QtySelectMui qty={qty} handleChange={handleChange} />
                 </div>
@@ -52,6 +52,14 @@ function CartProduct(props) {
         </div>
         <style jsx>
             {`
+            .qtySelectDiv .MuiBox-root {
+                position: relative;
+                right: 30px;
+                min-width: 80px !important;
+            }
+            .qtySelectDiv > div > div > div > div {
+                padding: 5px 5px 5px 50px;
+            }
             .qtyLabel {
                 position: relative;
                 left: 10px;
