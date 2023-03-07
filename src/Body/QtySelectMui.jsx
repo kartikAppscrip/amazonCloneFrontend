@@ -24,20 +24,6 @@ export default function QtySelectMui(props) {
           </Select>
         </FormControl>
       </Box>
-      <style jsx>
-        {
-          `
-          .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
-            padding: 5px 5px 5px 50px;
-          }
-          .css-ece9u5{
-            position: relative;
-            right: 30px;
-            min-width: 80px !important;
-          }
-          `
-        }
-      </style>
     </>
   );
 }
