@@ -33,7 +33,7 @@ function Product(props) {
             </p>
             <p className="productRating d-flex" style={{ color: "#fda21c" }}>
                 {[...Array(Math.round(data.rating.rate))].map((_, i) => <StarRateIcon fontSize="small" />)}
-                <span class="a-size-small a-color-tertiary d-flex align-items-center">{data.rating.count}</span>
+                <span className="a-size-small a-color-tertiary d-flex align-items-center">{data.rating.count}</span>
             </p>
         </div>
         <p className="p-2 h-auto line-clamp h-100" style={{ fontSize: '13px' }}>

@@ -5,7 +5,8 @@ import CartProduct from "./CartProduct";
 function Cart() {
   const dataInCart = useSelector(state => state.dataAddedReducer.dataAdded);
   let totalAmount = 0;
-  dataInCart?.map((item) => {
+  const selectedData = dataInCart?.filter(item => item.selected === true);
+  selectedData?.map((item) => {
     totalAmount += (item.qty) * (item.price);
   });
   return <div className="bgAmazon p-4 position-relative cartBelowHeader">
@@ -18,16 +19,20 @@ function Cart() {
       <div className='m-0'>
         {dataInCart?.map((data, index) =>
           <div className="helper p-0" key={index}>
-            <CartProduct data={data} noAddButton />
+            <CartProduct data={data} />
             <hr />
           </div>)}
       </div>
-      <h4 className="d-flex justify-content-end">
-        {`Subtotal
+      {selectedData.length
+        ? <h4 className="d-flex justify-content-end">
+          {`Subtotal
         (${dataInCart.length} items):
         `}
-        <strong>{`$${Math.round(totalAmount * 100) / 100}`}</strong>
-      </h4>
+          <strong>{`$${Math.round(totalAmount * 100) / 100}`}</strong>
+        </h4>
+        : <h4 className="d-flex justify-content-end">
+          No Items Added
+        </h4>}
     </div>
     <style jsx>
       {
