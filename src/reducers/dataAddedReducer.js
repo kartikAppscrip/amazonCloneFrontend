@@ -1,4 +1,5 @@
 import { ADDED_ITEM, INCREASED_ITEM } from "../actions/Body"
+import { ALL_DATA } from "../Body/Body";
 import { CHECK_SELECT, QTY_SELECT } from "../Body/CartProduct";
 
 // (previousState, action) => newState
@@ -8,6 +9,11 @@ const initialState = {
 }
 const dataAddedReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ALL_DATA:
+      return {
+        ...state,
+        allData: action.data
+      }
     case ADDED_ITEM:
       return {
         ...state,

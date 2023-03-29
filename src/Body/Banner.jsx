@@ -1,6 +1,9 @@
 import React from "react";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import banner1 from "./BannerImages/banner1.jpg"
+import banner2 from "./BannerImages/banner2.jpg"
+import banner3 from "./BannerImages/banner3.jpg"
 
 function Banner() {
     return <div className="position-relative banner">
@@ -13,13 +16,13 @@ function Banner() {
             interval={5000}
         >
             <div>
-                <img className="carousel_Image" loading="lazy" src="https://links.papareact.com/gi1" alt="nothhh" />
+                <img className="carousel_Image" src={banner1} alt="nothhh" />
             </div>
             <div>
-                <img className="carousel_Image" loading="lazy" src="https://links.papareact.com/6ff" alt="nothhh" />
+                <img className="carousel_Image" src={banner2} alt="nothhh" />
             </div>
             <div>
-                <img className="carousel_Image" loading="lazy" src="https://links.papareact.com/7ma" alt="nothhh" />
+                <img className="carousel_Image" src={banner3} alt="nothhh" />
             </div>
         </Carousel>
         <style jsx>
