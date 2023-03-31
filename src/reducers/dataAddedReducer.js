@@ -4,7 +4,6 @@ import { CHECK_SELECT, QTY_SELECT } from "../Body/CartProduct";
 
 // (previousState, action) => newState
 const initialState = {
-  itemsInBasket: 0,
   dataAdded: []
 }
 const dataAddedReducer = (state = initialState, action) => {
@@ -17,7 +16,6 @@ const dataAddedReducer = (state = initialState, action) => {
     case ADDED_ITEM:
       return {
         ...state,
-        itemsInBasket: state.itemsInBasket + 1,
         dataAdded: [...state.dataAdded, { ...action.data, qty: 1, selected: true }]
       }
 

@@ -6,7 +6,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import BodyHeader from "../Body/BodyHeader";
 import AllDropDown from "./AllDropDown";
 import { Link } from "react-router-dom";
-import { connect, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const headerAcountOrderPrime = [
   {
@@ -28,7 +28,8 @@ const headerAcountOrderPrime = [
 
 function Header() {
   const [indexHeaderAcount, setIndexHeaderAcount] = React.useState(0);
-  const itemsInBasket = useSelector(state => state.dataAddedReducer.itemsInBasket);
+  let itemsInBasket = 0;
+  useSelector(state => state?.dataAddedReducer?.dataAdded.map((data) => itemsInBasket += data?.qty));
   switch (indexHeaderAcount) {
     case 1:
       <Link to='/SignIn' />
@@ -77,7 +78,7 @@ function Header() {
           <ShoppingCartIcon style={{ marginTop: "auto" }} />
           <div className="nav_options">
             <span className="option_lineOne" style={{ color: "orange" }}>
-              {itemsInBasket || 0}
+              {itemsInBasket}
             </span>
             <span className="option_lineTwo">cart</span>
           </div>
