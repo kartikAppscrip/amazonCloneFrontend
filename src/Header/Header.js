@@ -29,7 +29,7 @@ const headerAcountOrderPrime = [
 function Header() {
   const [indexHeaderAcount, setIndexHeaderAcount] = React.useState(0);
   let itemsInBasket = 0;
-  useSelector(state => state?.dataAddedReducer?.dataAdded.map((data) => itemsInBasket += data?.qty));
+  useSelector(state => state?.dataAddedReducer?.dataAdded.map((data) => (data?.selected) && (itemsInBasket += data?.qty)));
   switch (indexHeaderAcount) {
     case 1:
       <Link to='/SignIn' />
