@@ -14,7 +14,7 @@ function CartProduct(props) {
     const dispatch = useDispatch();
     const { data } = props;
     const [qty, setQty] = React.useState(data.qty || 1);
-    const [checkSelect, setCheckSelect] = React.useState(true);
+    const [checkSelect, setCheckSelect] = React.useState(data.selected);
     const handleChange = (event) => {
         setQty(event.target.value);
         dispatch({ type: QTY_SELECT, data, qty: event.target.value });
@@ -31,7 +31,7 @@ function CartProduct(props) {
     return <div className={`product d-flex justify-content-between ${!checkSelect && 'disable_UI'}`}>
         <div className="d-flex">
             <div className="mt-auto mb-auto" style={{ pointerEvents: 'all' }}>
-                <Checkbox {...label} defaultChecked className="h-25" onChange={paritcularDataSelectFunction} />
+                <Checkbox {...label} checked={checkSelect} className="h-25" onChange={paritcularDataSelectFunction} />
             </div>
             <div className="" style={{ minWidth: '210px' }}>
                 <div className="d-flex align-items-center p-3">
