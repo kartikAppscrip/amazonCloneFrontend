@@ -3,17 +3,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import Banner from './Banner';
 import Product from './Product';
 import { useLocation } from "react-router-dom";
+import Header from '../Header/Header';
+import { start_loader, stop_loader } from '../../src/lib/global';
 export const ALL_DATA = 'ALL_DATA';
 
 function Body() {
   async function dataGetFunction() {
+    start_loader();
     try {
       const response = await fetch('https://fakestoreapi.com/products/');
       const data = await response.json();
       dispatch({ type: ALL_DATA, data: data });
     } catch (error) {
       console.error(error);
-    }
+    } finally {
+      stop_loader();
+    };
   }
   const location = useLocation();
   location.pathname = '/name';
@@ -26,6 +31,7 @@ function Body() {
 
   return (
     <div>
+      <Header />
       <div className='bgAmazon position-relative' style={{ top: '60px' }}>
         <div className='col-12 vh-50 p-0'>
           <Banner className="banner" />

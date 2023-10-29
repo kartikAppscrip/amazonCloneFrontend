@@ -1,4 +1,4 @@
-import { ADDED_ITEM, INCREASED_ITEM } from "../actions/Body"
+import { ADDED_ITEM, INCREASED_ITEM, REMOVED_ITEM } from "../actions/Body"
 import { ALL_DATA } from "../Body/Body";
 import { CHECK_SELECT, QTY_SELECT } from "../Body/CartProduct";
 
@@ -18,6 +18,11 @@ const dataAddedReducer = (state = initialState, action) => {
         ...state,
         dataAdded: [...state.dataAdded, { ...action.data, qty: 1, selected: true }]
       }
+
+    case REMOVED_ITEM:
+      const updateRemoveState = { ...state };
+      const updatedataAdded = updateRemoveState.dataAdded?.filter(obj => obj.id !== action.data.id);
+      return { ...updateRemoveState, dataAdded: updatedataAdded };
 
     case INCREASED_ITEM:
       const updateIState = { ...state };

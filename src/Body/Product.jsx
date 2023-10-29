@@ -1,22 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import StarRateIcon from '@mui/icons-material/StarRate';
 import Currency from "react-currency-formatter";
 import { useDispatch, useSelector } from "react-redux";
-import { addToBasket } from "../actions/Body";
-
+import { addToBasket, removedFromBasket } from "../actions/Body";
+import { useState } from "react";
 // const restrictLengthOfDesc = (oldDesc) => {
 //     const newDesc = oldDesc.substring(0, 150);
 //     return newDesc === oldDesc ? oldDesc : `${newDesc}...`;
 // }
-const addClicked = (reduxData, data, dispatch) => {
-    const check = reduxData?.filter(dataRedux => dataRedux.id === data.id);
-    addToBasket(data, dispatch, check);
-}
 
 function Product(props) {
+    const [dataQty, setDataQty] = useState(0);
+    const addClicked = (reduxData, data, dispatch) => {
+        const check = reduxData?.filter(dataRedux => dataRedux.id === data.id);
+        addToBasket(data, dispatch, check);
+        reduxData.map((dataCart) => {
+            dataCart?.id === data?.id && setDataQty(dataCart.qty);
+        })
+    }
+    const removeClicked = (reduxData, data, dispatch) => {
+        const check = reduxData?.filter(dataRedux => dataRedux.id === data.id);
+        removedFromBasket(data, dispatch, check);
+        reduxData.map((dataCart) => {
+            dataCart?.id === data?.id && setDataQty(0);
+        });
+    }
+
     const reduxData = useSelector(state => state.dataAddedReducer.dataAdded);
     const dispatch = useDispatch();
     const { data } = props;
+    useEffect(() => {
+        reduxData.map((cartData) => {
+            if (cartData.id === data.id) setDataQty(cartData.qty);
+        });
+    }, [reduxData]);
+
     return <div className="product d-flex flex-column justify-content-between">
         <p className="font-italic font-weight-light ml-auto pr-2 pt-1 mb-1" style={{ fontSize: '12px' }}>
             {data.category}
@@ -39,12 +57,21 @@ function Product(props) {
         <p className="p-2 h-auto line-clamp h-100" style={{ fontSize: '13px' }}>
             {data?.description}
         </p>
-        <button
-            className="ml-4 mr-4 mb-3 mt-2 p-2 rounded border-0 buttonAddToCart"
-            onClick={() => addClicked(reduxData, data, dispatch)}
-        >
-            Add To Basket
-        </button>
+        {!dataQty ?
+            <button
+                className="ml-4 mr-4 mb-3 mt-2 p-2 rounded border-0 buttonAddToCart"
+                onClick={() => addClicked(reduxData, data, dispatch)}
+            >
+                Add To Basket
+            </button>
+            :
+            <button
+                className="ml-4 mr-4 mb-3 mt-2 p-2 rounded border-0 buttonRemove"
+                onClick={() => removeClicked(reduxData, data, dispatch)}
+            >
+                Remove From Basket
+            </button>
+            }
 
         <style jsx>
             {`
@@ -70,12 +97,6 @@ function Product(props) {
             .a-size-small {
                 font-size: 12px!important;
                 line-height: 16px!important;
-            }
-            .buttonAddToCart{
-                background-color: #FFD814;
-            }
-            .buttonAddToCart:hover{
-                background-color: #e8c61e;
             }
             .line-clamp {
                 display: -webkit-box;

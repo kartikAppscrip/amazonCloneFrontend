@@ -1,0 +1,8 @@
+:root {
+    --navyLightBorderColor: #cdd4fd;
+    --whiteMainColor: #fff;
+    --input-color: #111;
+    --input_border_color: #a6a6a6;
+    --alert_color: #c40000;
+    --customLoaderScreenColor:rgba(255, 255, 255, 0.5);
+}

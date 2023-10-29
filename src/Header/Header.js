@@ -1,42 +1,29 @@
-// import React, { useEffect } from "react";
-import React from "react";
+import React, { useEffect } from "react";
 import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import BodyHeader from "../Body/BodyHeader";
 import AllDropDown from "./AllDropDown";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-const headerAcountOrderPrime = [
-  {
-    topText: "Hello Guest,sign in",
-    bottomText: "Account & Lists",
-    // route: "SignIn"
-  },
-  {
-    topText: "Returns",
-    bottomText: "& Orders",
-    // route: "return&orders"
-  },
-  {
-    topText: "Your",
-    bottomText: "Prime",
-    // route: "prime"
-  }
-]
+import Popovers from "../Popover";
 
 function Header() {
+  const navigate = useNavigate();
   const [indexHeaderAcount, setIndexHeaderAcount] = React.useState(0);
   let itemsInBasket = 0;
   useSelector(state => state?.dataAddedReducer?.dataAdded.map((data) => (data?.selected) && (itemsInBasket += data?.qty)));
-  switch (indexHeaderAcount) {
-    case 1:
-      <Link to='/SignIn' />
-      break;
-    default:
-      <Link to='#' />
-  }
+
+  useEffect(() => {
+    switch (indexHeaderAcount) {
+      case 1:
+        navigate('/signin');
+        break;
+      default:
+        navigate('/');
+    }
+  }, [indexHeaderAcount]);
+
   return (
     <>
       <div className="header position-fixed w-100" style={{ zIndex: 10 }}>
@@ -63,16 +50,44 @@ function Header() {
           </div>
         </div>
         <div className="header_nav">
-          {
-            headerAcountOrderPrime.map((data, index) => (
-              <div className="nav_options" onClick={() => { setIndexHeaderAcount(index + 1) }} key={index}>
-                <Link to={data.route} className="d-flex flex-column text-decoration-none">
-                  <span className="option_lineOne">{data.topText}</span>
-                  <span className="option_lineTwo">{data.bottomText}</span>
-                </Link>
+          <div className="nav_options cursor" onClick={() => setIndexHeaderAcount(1)}>
+            <Popovers
+              title=""
+              trigger="hover"
+              placement="bottom"
+              content={<div className="p-2 position-relative" style={{ minWidth: '170px' }}>
+                <button
+                  style={{ height: 30 }}
+                  className="w-100 rounded border-0 buttonAddToCart"
+                  onClick={() => navigate('/signin')}
+                >
+                  Sign in
+                </button>
+                <p className="heading m-0 mt-2" style={{ fontWeight: 'unset' }} onClick={() => navigate('/register')}>
+                  New customer?
+                  <a href="localhost:3000"> Start here.</a>
+                </p>
+              </div>}
+            >
+              <div className="d-flex flex-column text-decoration-none" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+                sagittis lacus vel augue laoreet rutrum faucibus.">
+                <span className="option_lineOne">Hello Guest,sign in</span>
+                <span className="option_lineTwo">Account & Lists</span>
               </div>
-            ))
-          }
+            </Popovers>
+          </div>
+          <div className="nav_options cursor" onClick={() => setIndexHeaderAcount(2)}>
+            <div className="d-flex flex-column text-decoration-none">
+              <span className="option_lineOne">Returns</span>
+              <span className="option_lineTwo">& Orders</span>
+            </div>
+          </div>
+          <div className="nav_options cursor" onClick={() => setIndexHeaderAcount(3)}>
+            <div className="d-flex flex-column text-decoration-none">
+              <span className="option_lineOne">Your</span>
+              <span className="option_lineTwo">Prime</span>
+            </div>
+          </div>
         </div>
         <Link to='cart' style={{ display: "flex", flexDirection: "row", color: 'white' }}>
           <ShoppingCartIcon style={{ marginTop: "auto" }} />
